@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+Module for
 Deletion-resilient hypermedia pagination
 """
 
@@ -14,11 +15,18 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """Init method to initialize instances
+        Args: no arguments
+        Return: no return values
+        """
         self.__dataset = None
         self.__indexed_dataset = None
 
     def dataset(self) -> List[List]:
         """Cached dataset
+        Args:
+            None
+        Returns: list of lists
         """
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
@@ -30,6 +38,9 @@ class Server:
 
     def indexed_dataset(self) -> Dict[int, List]:
         """Dataset indexed by sorting position, starting at 0
+        Args:
+            none
+        Returns: an indexed data set
         """
         if self.__indexed_dataset is None:
             dataset = self.dataset()
@@ -41,7 +52,11 @@ class Server:
 
     def get_hyper_index(self, index: int = None,
                         page_size: int = 10) -> Dict[str, Any]:
-        """
+        """ Function to get index media even if some is deleted
+        Args:
+            index: current start index
+            page_size: size of data to index
+        Returns: indexed data set
         """
         assert isinstance(index, int)
         assert isinstance(page_size, int) and page_size > 0
