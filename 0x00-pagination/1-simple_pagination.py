@@ -42,10 +42,6 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """ Function that uses given parameters to paginate a dataset
-        Args:
-            page: the current page number
-            page_size: the number of rows a to take
-        Returns: the dataset list
         """
         assert isinstance(page, int) and type(page_size) is int,\
                 f'raised when page and/or page_size are not ints'
