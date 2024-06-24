@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+Module for the get_page function
 """
 import csv
 import math
@@ -42,6 +43,10 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """ Function that uses given parameters to paginate a dataset
+        Args:
+            page: the page number/index
+            page_size: size of chunck of the data set to paginate
+        Returns: the page gotten, empty list if paramaters are out of range
         """
         assert isinstance(page, int) and type(page_size) is int,\
             f'raised when page and/or page_size are not ints'
