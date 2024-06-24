@@ -79,7 +79,7 @@ class Server:
         else:
             hyper["previouse_page"] = page - 1
         no_of_pages = round(totalPages / page_size)
-        hyper["total_pages"] = no_of_pages 
+        hyper["total_pages"] = no_of_pages
         if hyper["total_pages"] < (totalPages / page_size):
             hyper["total_pages"] += 1
 
