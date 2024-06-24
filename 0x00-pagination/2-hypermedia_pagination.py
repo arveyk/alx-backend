@@ -64,19 +64,23 @@ class Server:
         hyper = {}
         '''if len(page_listing) > 0:
         '''
+        totalPages = len(self.__dataset)
+        hyper["page_size"] = page_size
         hyper["page"] = page
-        if page == 3000:
+        if page >= totalPages:
             hyper["data"] = []
             hyper["next_page"] = None
         else:
             end = page + page_size
-            hyper["data"] = page_listing[page:end]
+            hyper["data"] = page_listing[page - 1:end]
             hyper["next_page"] = page + 1
         if page == 0:
             hyper["previouse_page"] = None
         else:
             hyper["previouse_page"] = page - 1
-        hyper["total_pages"] = (len(page_listing) - 1)
-        hyper["page_size"] = page_size
+        no_of_pages = round(totalPages / page_size)
+        hyper["total_pages"] = no_of_pages 
+        if hyper["total_pages"] < (totalPages / page_size):
+            hyper["total_pages"] += 1
 
         return hyper
