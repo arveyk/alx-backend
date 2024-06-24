@@ -44,7 +44,7 @@ class Server:
         """ Function that uses given parameters to paginate a dataset
         """
         assert isinstance(page, int) and type(page_size) is int,\
-                f'raised when page and/or page_size are not ints'
+            f'raised when page and/or page_size are not ints'
 
         assert page > 0 and page_size > 0, f'raised with negative values'
 
