@@ -14,5 +14,5 @@ def index_range(page: int, page_size: int) -> tuple:
         size = 0
     else:
         size = page
-    pagination = (size, page_size * page)
+    pagination = ((page - 1) * page_size, page_size * page)
     return pagination
