@@ -11,6 +11,9 @@ from typing import List, Dict, Any
 
 class Server:
     """Server class to paginate a database of popular baby names.
+    Attributes:
+        __dataset (list): row data
+        __indexed_dataset (list): indexed, searched data
     """
     DATA_FILE = "Popular_Baby_Names.csv"
 
