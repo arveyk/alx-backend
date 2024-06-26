@@ -2,6 +2,7 @@
 """BaseCaching module
 """
 
+
 class BaseCaching():
     """BaseCaching defines:
       - constants of my caching system
