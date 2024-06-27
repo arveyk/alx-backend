@@ -24,8 +24,8 @@ class LIFOCache(BaseCaching):
             limit = len(self.cache_data)
             if limit > BaseCaching.MAX_ITEMS:
                 List_keys = list(self.cache_data.keys())
-                print("DISCARD: {}".format(List_keys[-1]))
-                self.cache_data.pop(List_keys[-1])
+                print("DISCARD: {}".format(List_keys[-2]))
+                self.cache_data.pop(List_keys[-2])
 
     def get(self, key):
         """Getter for cache_data whose value is at given key
