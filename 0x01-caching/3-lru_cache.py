@@ -29,11 +29,11 @@ class LRUCache(BaseCaching):
             limit = len(self.cache_data)
             List_keys = list(self.cache_data.keys())
 
-            #if self.swt == 0:
+            # if self.swt == 0:
             #    for ky in List_keys:
             #        self.LruDict[ky] = 0
             #    self.swt = 1
-            #else:
+            # else:
             for ky in List_keys:
                 if ky in self.LruDict:
                     continue
@@ -54,7 +54,7 @@ class LRUCache(BaseCaching):
                     if great < tempLruD[ky]:
                         gKey = ky
                         great = tempLruD[ky]
-                #if List_keys[0] == least_key:
+                # if List_keys[0] == least_key:
                 if self.count >= 3 and gKey == self.cache_data[List_keys[0]]:
                     self.cache_data.pop(List_keys[0])
                     self.LruDict.pop(List_keys[0])
