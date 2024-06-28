@@ -1,21 +1,7 @@
 #!/usr/bin/python3
 """FIFOCache
 """
-from collections import Counter
 BaseCaching = __import__('0-basic_cache').BaseCaching
-
-
-def CallCount(func):
-    """Counter function
-    Args:
-        args:
-        kwargs:
-    Returns: list of funtion args"""
-    def wrapped(*args):
-        wrapped.Tup = args
-        return func(*args)
-    wrapped.Tup = (0, 0)
-    return wrapped
 
 
 class LRUCache(BaseCaching):
@@ -23,6 +9,7 @@ class LRUCache(BaseCaching):
     """
     LruDict = {}
     swt = 0
+    count = 0
 
     def __init__(self):
         """Initialize the class
@@ -36,52 +23,60 @@ class LRUCache(BaseCaching):
             items: data to be stored
         Return: no return value
         """
+
         if key is not None and item is not None:
             self.cache_data[key] = item
             limit = len(self.cache_data)
+            List_keys = list(self.cache_data.keys())
+
+            #if self.swt == 0:
+            #    for ky in List_keys:
+            #        self.LruDict[ky] = 0
+            #    self.swt = 1
+            #else:
+            for ky in List_keys:
+                if ky in self.LruDict:
+                    continue
+                self.LruDict[ky] = 0
+                self.count += 1
 
             if limit > BaseCaching.MAX_ITEMS:
-                LrUsed = self.get.Tup
-                List_keys = list(self.cache_data.keys())
-                # Get the key
-
-                for key in List_keys:
-                    self.LruDict[key] = 0
-
-                # increment values
-                for key in self.LruDict:
-                    if key == LrUsed[1]:
-                        self.LruDict[key] += 1
                 least = self.LruDict[List_keys[0]]
                 least_key = List_keys[0]
-
-                greatK = least_key
                 great = least
-                for key in self.LruDict:
-                    if least > self.LruDict[key]:
-                        least_key = key
-                        least = self.LruDict[key]
-                    if great < self.LruDict[key]:
-                        greatK = key
-                        great = self.LruDict[key]
-                if List_keys[0] == great:
-                    self.cache_data.pop(greatK)
-                    p = greaK
-                if List_keys[0] == least_key:
-                    self.cache_data.pop(least_key)
-                    p = least_key
-                else:
+                gKey = least_key
+
+                tempLruD = self.LruDict
+                for ky in List_keys:
+                    if least > tempLruD[ky]:
+                        least_key = ky
+                        least = tempLruD[ky]
+                    if great < tempLruD[ky]:
+                        gKey = ky
+                        great = tempLruD[ky]
+                #if List_keys[0] == least_key:
+                if self.count >= 3 and gKey == self.cache_data[List_keys[0]]:
                     self.cache_data.pop(List_keys[0])
+                    self.LruDict.pop(List_keys[0])
                     p = List_keys[0]
+                    self.count = 0
+                else:
+                    self.cache_data.pop(least_key)
+                    self.LruDict.pop(least_key)
+                    p = least_key
                 print("DISCARD: {}".format(p))
 
-    @CallCount
     def get(self, key):
         """Getter for cache_data whose value is at given key
         Args:
             key: the key to search
         Returns: the value of the cache_data
         """
+        List_keys = list(self.cache_data.keys())
+        for ky in List_keys:
+            if key == ky:
+                self.LruDict[ky] += 1
         if key in self.cache_data:
             return self.cache_data[key]
+
         return None
