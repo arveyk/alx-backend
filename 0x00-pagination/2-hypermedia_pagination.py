@@ -18,7 +18,7 @@ def index_range(page: int, page_size: int) -> tuple:
         size = 0
     else:
         size = page
-    pagination = (size, page_size * page)
+    pagination = ((page - 1) * page_size, page_size * page)
     return pagination
 
 
@@ -72,7 +72,7 @@ class Server:
             hyper["next_page"] = None
         else:
             end = page + page_size
-            hyper["data"] = page_listing[page - 1:end]
+            hyper["data"] = page_listing
             hyper["next_page"] = page + 1
         if page == 0:
             hyper["previouse_page"] = None
