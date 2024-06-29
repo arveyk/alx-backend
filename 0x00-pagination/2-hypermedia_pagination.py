@@ -69,7 +69,6 @@ class Server:
         if page >= totalPages / page_size:
             hyper["page_size"] = 0
             hyper["data"] = []
-            hyper["next_page"] = None
         else:
             hyper["page_size"] = page_size
             end = page + page_size
@@ -83,5 +82,7 @@ class Server:
         hyper["total_pages"] = no_of_pages
         if hyper["total_pages"] < (totalPages / page_size):
             hyper["total_pages"] += 1
+        if hyper["total_pages"] <= page:
+            hyper["next_page"] = None
 
         return hyper
