@@ -74,7 +74,7 @@ class Server:
             end = page + page_size
             hyper["data"] = page_listing
             hyper["next_page"] = page + 1
-        if page == 0:
+        if page == 1:
             hyper["previouse_page"] = None
         else:
             hyper["previouse_page"] = page - 1
