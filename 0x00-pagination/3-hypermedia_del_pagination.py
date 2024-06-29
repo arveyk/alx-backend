@@ -63,7 +63,7 @@ class Server:
         """
         assert isinstance(index, int)
         assert isinstance(page_size, int) and page_size > 0
-        assert index >= 0 and index < 3000, f"raised when out of range"
+        assert index >= 0 and index <= len(self.__dataset) // page_size, f"raised when out of range"
         hyper_index = {}
         hyper_index["index"] = index
         hyper_index["page_size"] = page_size
