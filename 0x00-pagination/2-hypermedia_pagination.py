@@ -65,12 +65,13 @@ class Server:
         '''if len(page_listing) > 0:
         '''
         totalPages = len(self.__dataset)
-        hyper["page_size"] = page_size
         hyper["page"] = page
-        if page >= totalPages:
+        if page >= totalPages / page_size:
+            hyper["page_size"] = 0
             hyper["data"] = []
             hyper["next_page"] = None
         else:
+            hyper["page_size"] = page_size
             end = page + page_size
             hyper["data"] = page_listing
             hyper["next_page"] = page + 1
