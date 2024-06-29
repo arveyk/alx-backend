@@ -75,9 +75,9 @@ class Server:
             hyper["data"] = page_listing
             hyper["next_page"] = page + 1
         if page == 1:
-            hyper["previouse_page"] = None
+            hyper["prev_page"] = None
         else:
-            hyper["previouse_page"] = page - 1
+            hyper["prev_page"] = page - 1
         no_of_pages = round(totalPages / page_size)
         hyper["total_pages"] = no_of_pages
         if hyper["total_pages"] < (totalPages / page_size):
