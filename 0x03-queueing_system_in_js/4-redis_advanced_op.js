@@ -1,6 +1,8 @@
-import { createClient } from 'redis';
+//import { createClient } from 'redis';
+redis = require('redis');
 
-const client = await createClient();
+const client = redis.createClient();
+client.connect();
 
 client.hSet = ('HolbertonSchools', {
   Portland: 50,
